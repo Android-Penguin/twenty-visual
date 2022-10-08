@@ -206,6 +206,8 @@ body {
     grid-template-columns: 2fr 1fr;
 }
 #slide1 img {
+    max-height: 100%;
+    max-width: 100%;
     align-self: end;
 }
 #slide2, #slide3, #slide5 {
@@ -224,4 +226,5 @@ body {
 #slide6 ul {
     grid-template-rows: 1fr;
     margin: 0;
+    font-size: 2.5rem;
 }
