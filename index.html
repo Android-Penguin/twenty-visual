@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
 </head>
 <body>
     <div id="splash-screen">
@@ -21,25 +22,107 @@
 
     <div id="fullscreen">
         <div id="grid-container">
-            <img src="./assets/laptop.png" alt="laptop">
+            <img src="./assets/laptop_optimized.png" alt="laptop">
             <div id="screen">
+                <!-- Slider main container -->
+                <div id="swiperDiv" class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                    <!-- Slides -->
+                        <div class="swiper-slide">Slide 1</div>
+                        <div class="swiper-slide">Slide 2</div>
+                        <div class="swiper-slide">Slide 3</div>
+                        <div class="swiper-slide">Slide 4</div>
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+                
+                    <!-- If we need navigation buttons -->
+                    <!-- <div class="swiper-button-prev nav-btn"></div>
+                    <div class="swiper-button-next nav-btn"></div> -->
+                </div>
             </div>
-            <img src="./assets/laptop_overlay.png" alt="laptop screen">
+            <div id="nav-buttons">
+                <span id="nav-left">&#8249;</span>
+                <span id="nav-right">&#8250;</span>
+            </div>
+            <!-- <img src="./assets/laptop_overlay_optimized.png" alt="laptop screen"> -->
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script>
-        // Constants
+        // Elements
         const splash = document.getElementById("splash-screen");
         const beginBtn = document.getElementById("begin-btn");
+        const screen = document.getElementById("screen");
+        const swiperElement = document.getElementById("swiperDiv");
+        const navButtons = document.getElementById("nav-buttons");
+        const swiperLeft = document.getElementById("nav-left");
+        const swiperRight = document.getElementById("nav-right");
 
+        // Click to begin button
         beginBtn.addEventListener("click", () => {
             splash.classList.add("fade-out");
+            swiperElement.classList.add("fade-in");
+            navButtons.classList.add("fade-in");
         });
-
+        // Display none on start screen
         splash.addEventListener("animationend", function() {
             this.style.display = "none";
-        })
+        });
+
+        // Swiper init
+        const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // And if we need scrollbar
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+        });
+
+        function resizeSwiper() {
+            // if(window.innerHeight > window.innerWidth) {
+            //     console.log("portrait")
+            //     swiperElement.style.display = "none";
+            //     navButtons.classList.remove("fade-in");
+            // } else {
+            //     swiperElement.style.display = "block";
+            //     navButtons.classList.add("fade-in");
+            // }
+
+            let width = screen.getBoundingClientRect().width;
+            let height = screen.getBoundingClientRect().height;
+            // console.log(width, height);
+            // console.log(swiperElement);
+            swiperElement.style.width = width+"px";
+            swiperElement.style.height = height+"px";
+        }
+        // Resize swiper on pageload or resize
+        window.addEventListener("load", resizeSwiper);
+        window.addEventListener("resize", resizeSwiper);
+
+        // Now you can use all slider methods like
+        swiperLeft.addEventListener("click", () => {
+            swiper.slidePrev();
+        });
+        swiperRight.addEventListener("click", () => {
+            swiper.slideNext();
+        });
     </script>
 </body>
 </html>
