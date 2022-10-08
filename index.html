@@ -84,6 +84,7 @@
         // Elements
         const splash = document.getElementById("splash-screen");
         const beginBtn = document.getElementById("begin-btn");
+        const gridContainer = document.getElementById("grid-container");
         const screen = document.getElementById("screen");
         const swiperElement = document.getElementById("swiperDiv");
         const navButtons = document.getElementById("nav-buttons");
@@ -93,12 +94,14 @@
         // Click to begin button
         beginBtn.addEventListener("click", () => {
             splash.classList.add("fade-out");
-            swiperElement.classList.add("fade-in");
-            navButtons.classList.add("fade-in");
+            gridContainer.classList.add("zoom");
         });
         // Display none on start screen
         splash.addEventListener("animationend", function() {
             this.style.display = "none";
+            resizeSwiper();
+            swiperElement.classList.add("fade-in");
+            navButtons.classList.add("fade-in");
         });
 
         // Swiper init

@@ -113,6 +113,11 @@ body {
     margin: 0 auto 0 auto;
     width: auto;
     height: auto;
+    transform: scale(0.75);
+    transition: all 0.5s;
+}
+#grid-container.zoom {
+    transform: scale(1);
 }
 #grid-container > * {
     grid-area: 1 / 1 / 2 / 2;
