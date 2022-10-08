@@ -1,0 +1,136 @@
+:root {
+    font-size: 10px;
+    --purpleLight: #CC79BD;
+    --purpleDark: #97598C;
+    --cyanLight: #B0D3CC;
+    --cyanDark: #6D9B90;
+    --black: #0B0A07;
+}
+* {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background:
+        linear-gradient(-90deg, rgba(11,10,7,.05) 1px, transparent 1px),
+        linear-gradient(rgba(11,10,7,.05) 1px, transparent 1px), 
+        linear-gradient(-90deg, rgba(11,10,7,.04) 1px, transparent 1px),
+        linear-gradient(rgba(11,10,7,.04) 1px, transparent 1px),
+        linear-gradient(transparent 3px, #f2f2f2 3px, #f2f2f2 78px, transparent 78px),
+        linear-gradient(-90deg, #aaa 1px, transparent 1px),
+        linear-gradient(-90deg, transparent 3px, #f2f2f2 3px, #f2f2f2 78px, transparent 78px),
+        linear-gradient(#aaa 1px, transparent 1px),
+        #f2f2f2;
+    background-size:
+        8px 8px,
+        8px 8px,
+        80px 80px,
+        80px 80px,
+        80px 80px,
+        80px 80px,
+        80px 80px,
+        80px 80px;
+}
+
+/** Site splash screen container */
+#splash-screen {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    backdrop-filter: blur(5px);
+}
+#splash-screen.fade-out {
+    animation-name: fade-out;
+    animation-duration: 0.5s;
+}
+@keyframes fade-out {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+/* Title Wrapper */
+#splash-screen > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+/* Title text */
+#splash-screen h1 {
+    margin: 0;
+    font-size: 6rem;
+    text-align: center;
+    color: var(--black);
+}
+#splash-screen span {
+    padding: 0.75rem;
+    font-size: 3rem;
+    border-radius: 0.5rem;
+    background-size: 200% 200%;
+    transition: background-position 1s;
+    background-image: linear-gradient(to right, var(--cyanLight) 50%, rgba(209, 209, 209, 0.521) 0);
+    background-position: right;
+    cursor: pointer;
+    transition: background 0.25s;
+}
+#splash-screen span:hover {
+    font-weight: bold;
+    background-position: left;
+}
+
+/* Fullscreen container */
+#fullscreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+#fullscreen * {
+    /* box-shadow: 0 0 5px var(--purpleLight); */
+}
+/** Grid container for stacked items */
+#grid-container {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    margin: 0 auto 0 auto;
+    width: auto;
+    height: auto;
+}
+#grid-container > * {
+    grid-area: 1 / 1 / 2 / 2;
+}
+/* Images in container */
+#grid-container > img {
+    display: block;
+    max-width:100%;
+    max-height:95vh;
+}
+/* Screen div with fancy stuff */
+#screen {
+    margin: 2.7% 18.9% 21.5% 19.5%;
+    padding: 10px;
+    background-color: white;
+    box-shadow: inset 0 0 20px rgb(182, 182, 182);
+}
+
+
+@media (max-width:720px) {
+    :root {
+        font-size: 6px;
+    }
+}
