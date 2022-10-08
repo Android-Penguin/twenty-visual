@@ -205,6 +205,9 @@ body {
 #slide1 {
     grid-template-columns: 2fr 1fr;
 }
+#slide1 img {
+    align-self: end;
+}
 #slide2, #slide3, #slide5 {
     grid-template-rows: 1fr 200px;
 }
