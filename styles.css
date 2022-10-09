@@ -225,8 +225,12 @@ body {
 }
 #slide4 {
     background-image: none;
-    background-color: var(--black);
-    color: whitesmoke;
+    background-color: whitesmoke !important;
+    color: var(--black) !important;
+    transition: filter 0.5s ease 0.2s !important;
+}
+.invert {
+    filter: invert(1) hue-rotate(180deg);
 }
 #slide6 ul {
     grid-template-rows: 1fr;

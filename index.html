@@ -125,18 +125,18 @@
         scrollbar: {
             el: '.swiper-scrollbar',
         },
+
+        keyboard: {
+            enabled: true,
+            onlyInViewport: false,
+        },
+        mousewheel: {
+            enabled: true
+        },
+
         });
 
         function resizeSwiper() {
-            // if(window.innerHeight > window.innerWidth) {
-            //     console.log("portrait")
-            //     swiperElement.style.display = "none";
-            //     navButtons.classList.remove("fade-in");
-            // } else {
-            //     swiperElement.style.display = "block";
-            //     navButtons.classList.add("fade-in");
-            // }
-
             let width = screen.getBoundingClientRect().width;
             let height = screen.getBoundingClientRect().height;
             // console.log(width, height);
@@ -147,6 +147,22 @@
         // Resize swiper on pageload or resize
         window.addEventListener("load", resizeSwiper);
         window.addEventListener("resize", resizeSwiper);
+
+        //Thank you to Excigma for this
+        const zoomOutSlides = [4]; // Might be zero indexed
+        const invertSlides = [4]; // Might be zero indexed
+
+        swiper.on('slideChange', function () {
+            // If this is a slide that should be zoomed
+            if (zoomOutSlides.includes(swiper.activeIndex)) gridContainer.classList.remove("zoom");
+            // otherwise, remove it
+            else gridContainer.classList.add("zoom");
+            
+
+            // Remove the invert from the previous slide if it had it
+            swiper.slides[swiper.previousIndex].classList.remove("invert");
+            if (invertSlides.includes(swiper.activeIndex)) swiper.slides[swiper.activeIndex].classList.add("invert");
+        });
 
         // Now you can use all slider methods like
         swiperLeft.addEventListener("click", () => {
