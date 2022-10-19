@@ -93,6 +93,10 @@ body {
     font-weight: bold;
     background-position: left;
 }
+#splash-screen span a {
+    color: var(--black);
+    text-decoration: none;
+}
 
 /* Fullscreen container */
 #fullscreen {
